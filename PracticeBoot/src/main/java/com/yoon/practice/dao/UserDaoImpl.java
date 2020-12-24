@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
 	public User getUser(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectOne("UserMapper.getUser");
+		return sqlSession.selectOne("UserMapper.getUser", userId);
 	}
 
 }
