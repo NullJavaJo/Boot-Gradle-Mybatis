@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset='utf-8' />
-<link href='../fullCalendar/main.css' rel='stylesheet' />
-<script src='../fullCalendar/main.js'></script>
+<link href='/resources/fullCalendar/main.css' rel='stylesheet' />
+<script src='/resources/fullCalendar/main.js'></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -11,68 +13,65 @@
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
-        left: 'prevYear,prev,next,nextYear today',
+        left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
       initialDate: '2020-09-12',
       navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
       editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
+      selectable: true,
       events: [
         {
-          title: 'All Day Event',
-          start: '2020-09-01'
+          title: 'Business Lunch',
+          start: '2020-09-03T13:00:00',
+          constraint: 'businessHours'
         },
         {
-          title: 'Long Event',
-          start: '2020-09-07',
-          end: '2020-09-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-09-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-09-16T16:00:00'
+          title: 'Meeting',
+          start: '2020-09-13T11:00:00',
+          constraint: 'availableForMeeting', // defined below
+          color: '#257e4a'
         },
         {
           title: 'Conference',
-          start: '2020-09-11',
-          end: '2020-09-13'
+          start: '2020-09-18',
+          end: '2020-09-20'
         },
         {
-          title: 'Meeting',
-          start: '2020-09-12T10:30:00',
-          end: '2020-09-12T12:30:00'
+          title: 'Party',
+          start: '2020-09-29T20:00:00'
+        },
+
+        // areas where "Meeting" must be dropped
+        {
+          groupId: 'availableForMeeting',
+          start: '2020-09-11T10:00:00',
+          end: '2020-09-11T16:00:00',
+          display: 'background'
         },
         {
-          title: 'Lunch',
-          start: '2020-09-12T12:00:00'
+          groupId: 'availableForMeeting',
+          start: '2020-09-13T10:00:00',
+          end: '2020-09-13T16:00:00',
+          display: 'background'
+        },
+
+        // red areas where no events can be dropped
+        {
+          start: '2020-09-24',
+          end: '2020-09-28',
+          overlap: false,
+          display: 'background',
+          color: '#ff9f89'
         },
         {
-          title: 'Meeting',
-          start: '2020-09-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-09-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-09-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-09-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-09-28'
+          start: '2020-09-06',
+          end: '2020-09-08',
+          overlap: false,
+          display: 'background',
+          color: '#ff9f89'
         }
       ]
     });
