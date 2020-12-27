@@ -22,9 +22,9 @@ dependencies {
 	//runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile('javax.servlet:jstl')
-	compile("org.apache.tomcat.embed:tomcat-embed-jasper")
-	compile fileTree(dir: "/src/main/webapp/WEB-INF/lib", include:["*.jar"])
+	compile('javax.servlet:jstl')//JSTL 사용
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper")	//JSP 파싱
+	compile fileTree(dir: "/src/main/webapp/WEB-INF/lib", include:["*.jar"])	//lib에 추가한 jar 읽어오기
 	
 }
 
