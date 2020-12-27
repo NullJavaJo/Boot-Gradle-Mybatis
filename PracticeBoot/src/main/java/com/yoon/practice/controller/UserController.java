@@ -20,4 +20,10 @@ public class UserController {
 		System.out.println(user);
 		return "login";
 	}
+	
+	@RequestMapping("background")
+	public String test() throws Exception{
+		
+		return "fullCalendar";
+	}
 }
