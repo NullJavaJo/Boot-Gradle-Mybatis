@@ -37,7 +37,7 @@ public class CalendarController {
 		
 		System.out.println(calendarService.getCalendar("TEST"));
 		Calendar cal = calendarService.getCalendar("TEST");
-		
+		//테스트중
 		model.addAttribute("cal",cal);
 		return "fullCalendar";
 	}
