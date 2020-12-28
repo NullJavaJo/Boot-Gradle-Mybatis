@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yoon.practice.service.CalendarService">
+
+	<resultMap id="calendarSelectMap" type="com.yoon.practice.domain.Calendar">
+		<result property="subject" 			column="subject" 			jdbcType="VARCHAR"/>
+		<result property="startDate"	column="startDate" 		jdbcType="VARCHAR" />
+		<result property="endDate" 	column="endDate" 		jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<insert id="addCalendar" parameterType="string">
+		insert into calendar(subject, startDate, endDate)
+			VALUES('${subject}','${startDate}','${endDate}')
+	</insert>
+
+
+	<select id="getCalendar" resultMap="calendarSelectMap" parameterType="string">
+		SELECT * FROM calendar where subject='${subject}'
+	</select>
+</mapper>
+

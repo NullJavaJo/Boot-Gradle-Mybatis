@@ -34,6 +34,7 @@ public class UserController {
 	@RequestMapping("calendar")	//FullCalendar Test
 	public String test() throws Exception{
 		System.out.println("calendar test");
+		
 		return "fullCalendar";	
 	}
 }

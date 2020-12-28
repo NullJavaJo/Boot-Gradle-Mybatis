@@ -7,8 +7,10 @@
 <link href='/resources/fullCalendar/main.css' rel='stylesheet' />
 <script src='/resources/fullCalendar/main.js'></script>
 <script>
+	var today = new Date();
 
   document.addEventListener('DOMContentLoaded', function() {
+	  
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -17,7 +19,8 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      initialDate: '2020-09-12',
+      locale: "ko",
+      initialDate: (today.getYear()+1900)+"-"+(today.getMonth()+1)+"-"+today.getDate(), //오늘 날짜를 기준으로 시작
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
       editable: true,
@@ -29,15 +32,15 @@
           constraint: 'businessHours'
         },
         {
-          title: 'Meeting',
+          title: '${cal.subject}',
           start: '2020-09-13T11:00:00',
           constraint: 'availableForMeeting', // defined below
           color: '#257e4a'
         },
         {
-          title: 'Conference',
-          start: '2020-09-18',
-          end: '2020-09-20'
+          title: '${cal.subject}',
+          start: '${cal.startDate}',
+          end: '${cal.endDate}'
         },
         {
           title: 'Party',
